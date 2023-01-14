@@ -1,4 +1,5 @@
 // Implicit Types - TypeScript will infer the type of the variable
+
 let helloWorld = 'Hello World' // string
 let helloWorld2 = 123 // number
 let helloWorld3 = true // boolean
@@ -51,34 +52,33 @@ let helloWorld19 = [
 
 // Explicit Types - TypeScript will not infer the type of the variable
 
-// Built-in Types
-
-// Boolean
-let isCool: boolean = true
+// Boolean - this is a boolean
+let isCool: boolean = true // this is the best practice
 let isPublished: boolean = true
+let isLogginIn: boolean = false
 
-// Number
-let age: number = 56
+// Number - this is a number
+let age: number = 56 // this is the best practice
 let id: number = 5
-let num: number
-num = 5
+let num: number // this is fine, although it's not the best practice
+num = 5 // because it's not initialized, it's type is 'any'
 
-// String
-let firstName: string = 'Justin'
+// String - this is a string
+let firstName: string = 'Justin' // this is the best practice
 let eyeColor: string = 'brown'
 let quote: string = 'Dodgers Rule!'
 
 // Array
-let ids: number[] = [1, 2, 3, 4, 5]
+let ids: number[] = [1, 2, 3, 4, 5] // this is the best practice
 let pets: string[] = ['cat', 'dog', 'pig']
-let pets2: Array<string> = ['lion', 'dragon', 'lizard']
+let pets2: Array<string> = ['lion', 'dragon', 'lizard'] // this is fine, although it's not the best practice
 
 // Tuple - this is an array of mixed types. the types have to be in the order specified
-type stringAndNumber = [string, number]
-let x: stringAndNumber = ['hello', 10]
-let person: [number, string, boolean] = [1, 'Justin', true]
-let basket: [string, number]
-basket = ['basketball', 5]
+type stringAndNumber = [string, number] // this is a type alias
+let x: stringAndNumber = ['hello', 10] // this is the best practice
+let person: [number, string, boolean] = [1, 'Justin', true] // this is the best practice
+let basket: [string, number] // this is fine, although it's not the best practice
+basket = ['basketball', 5] // this is fine, although it's not the best practice
 
 // Tuple Array - this is an array of tuples
 let employee: [number, string][]
@@ -105,21 +105,18 @@ enum Continents {
   Australia,
   Antarctica,
 }
+let region = Continents.Antarctica // 6
 
-let region = Continents.Antarctica
-
-// enum Continents {
-//   NorthAmerica = 'North America',
-//   SouthAmerica = 'South America',
-//   Europe = 'Europe',
-//   Asia = 'Asia',
-//   Africa = 'Africa',
-//   Australia = 'Australia',
-//   Antarctica = 'Antarctica',
-// }
-
-// usage
-let continent: Continents = Continents.Antarctica
+enum Continents2 {
+  NorthAmerica = 'North America',
+  SouthAmerica = 'South America',
+  Europe = 'Europe',
+  Asia = 'Asia',
+  Africa = 'Africa',
+  Australia = 'Australia',
+  Antarctica = 'Antarctica',
+}
+let continent: Continents2 = Continents2.Antarctica // Antarctica
 
 enum Direction1 {
   Up = 1,
@@ -127,7 +124,7 @@ enum Direction1 {
   Left,
   Right,
 }
-console.log(Direction1.Down)
+console.log(Direction1.Down) // 2
 
 enum Direction2 {
   Up = 'Up',
@@ -135,7 +132,7 @@ enum Direction2 {
   Left = 'Left',
   Right = 'Right',
 }
-console.log(Direction2.Left)
+console.log(Direction2.Left) // Left
 
 // Any - !!!!!!!!!! Be careful with any !!!!!!!!!!
 let y: any = 'Hello'
@@ -194,17 +191,16 @@ let sing = (): void => {
   console.log('lalalala')
 }
 
-// Null and Undefined
+// Null and Undefined - these are not the same as void
 let meh: undefined = undefined
 let noo: null = null
 
-// Never
+// Never - this is a function that never returns anything (the return type is inferred)
 let error = (): never => {
   throw Error('oops')
 }
 
 // Objects - this is an object with a specific type for each key value pair in the object literal syntax (key: value)
-
 type UserName = {
   id: number
   name: string
@@ -225,15 +221,16 @@ let ohhithere: any = 'OH HI THERE'
 let strLength: number = (ohhithere as string).length
 let strLength2: number = (<string>ohhithere).length
 
-// Functions - this is a function that takes a string and returns a string (the return type is inferred) and the parameter is optional
-// function addNum(x, y) {
-//   return x + y
-// }
+// Functions - this is a function with a specific type for each parameter and the return type
+function addTwo(num: number): number {
+  return num + 2
+}
+console.log(addTwo(2)) // 4
 
 function addNum(x: number, y: number): number {
   return x + y
 }
-console.log(addNum(1, 2))
+console.log(addNum(1, 2)) // 3
 
 // Interfaces - this is a way to define a type for an object that can be reused in multiple places
 interface User {
@@ -260,7 +257,7 @@ const user1: UserInterface = {
 
 // user1.id = 5 // this will not work because id is read only
 
-// Interfaces with functions
+// Interfaces with functions - this is a way to define a type for a function that can be reused in multiple places
 interface MathFunc {
   (x: number, y: number): number
 }
@@ -271,7 +268,7 @@ const subtract: MathFunc = (x: number, y: number): number => x - y
 // Union - this is a variable that can be multiple types but you can only assign one type
 let pid: string | number = 2
 
-// Composing types -> Union Types
+// Composing types -> Union Types - this is a variable that can be multiple types and you can assign any of those types
 type WindowStates = 'open' | 'closed' | 'minimized'
 type LockStates = 'locked' | 'unlocked'
 type OddNumberUnderTen = 1 | 3 | 5 | 7 | 9
@@ -280,7 +277,7 @@ type OddNumberUnderTen = 1 | 3 | 5 | 7 | 9
 // const odd: OddNumberUnderTen = 11 // Error
 const odd: OddNumberUnderTen = 1 // OK
 
-// Composing types -> Intersection Types
+// Composing types -> Intersection Types - this is a variable that can be multiple types and you can assign any of those types
 const getLength = (param: string | string[]) => {
   // return param.length // Error
 }
@@ -315,8 +312,8 @@ class Person implements PersonInterface {
   }
 }
 
-const justin = new Person(1, 'Justin', 35)
-const john = new Person(2, 'John', 65)
+const justin = new Person(1, 'Justin', 35) // this is an instance of the class
+const john = new Person(2, 'John', 65) // this is an instance of the class
 
 class Employee extends Person {
   position: string
@@ -325,9 +322,9 @@ class Employee extends Person {
     super(id, name, age)
     this.position = position
   }
-}
+} // this is a class that extends the Person class
 
-const emp = new Employee(3, 'Jupiter', 25, 'CEO')
+const emp = new Employee(3, 'Jupiter', 25, 'CEO') // this is an instance of the class
 
 // console.log(justin) // this will work because id and name are public
 // console.log(john) // this will work because id and name are public
@@ -336,19 +333,19 @@ const emp = new Employee(3, 'Jupiter', 25, 'CEO')
 // console.log(justin.age) // this will not work because age is private
 console.log(justin.register()) // this will work because register is public
 // console.log(employee)
-console.log(emp.name)
+console.log(emp.name) // this will work because name is public
 
 // Generics - this is a way to make a function reusable for multiple types of data (this is a function that takes a string and returns a string)
 function getArray<T>(items: T[]): T[] {
   return new Array().concat(items)
-}
+} // this is a generic function
 
-let numArray = getArray<number>([1, 2, 3, 4])
-let strArray = getArray<string>(['justin', 'john', 'jupiter'])
+let numArray = getArray<number>([1, 2, 3, 4]) // this is a number array
+let strArray = getArray<string>(['justin', 'john', 'jupiter']) // this is a string array
 
-numArray.push(5)
+numArray.push(5) // this will work because we told the compiler that the array is a number array
 // numArray.push('hello') // this will not work because we told the compiler that the array is a number array
-console.log(numArray)
+console.log(numArray) // this will work because we told the compiler that the array is a number array
 
-strArray.push('hello')
-console.log(strArray)
+strArray.push('hello') // this will work because we told the compiler that the array is a string array
+console.log(strArray) // this will work because we told the compiler that the array is a string array
