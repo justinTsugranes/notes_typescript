@@ -1,0 +1,20 @@
+{
+  "name": "typescript_notes",
+  "version": "1.0.0",
+  "description": "tsc --watch FILENAME tsc --init",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinTsugranes/typescript_notes.git"
+  },
+  "keywords": [],
+  "author": "justinTsugranes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justinTsugranes/typescript_notes/issues"
+  },
+  "homepage": "https://github.com/justinTsugranes/typescript_notes#readme"
+}

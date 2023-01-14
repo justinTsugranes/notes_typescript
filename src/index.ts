@@ -1,4 +1,4 @@
-// Implicit Types - TypeScript will infer the type of the variable
+// ! Implicit Types - TypeScript will infer the type of the variable
 
 let helloWorld = 'Hello World' // string
 let helloWorld2 = 123 // number
@@ -50,7 +50,7 @@ let helloWorld19 = [
   Symbol('foo'),
 ] // (number | string | boolean | object | string[] | null | undefined | symbol)[]
 
-// Explicit Types - TypeScript will not infer the type of the variable
+// ! Explicit Types - TypeScript will not infer the type of the variable
 
 // Boolean - this is a boolean
 let isCool: boolean = true // this is the best practice
