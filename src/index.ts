@@ -210,6 +210,19 @@ const username: UserName = {
   name: 'Justin',
 }
 
+// Access Modifiers - this is a way to make properties of an object private or public
+// public - this is the default
+// private - this is only accessible within the class
+// protected - this is only accessible within the class and any subclasses
+// readonly - this is a property that can only be read, not changed
+
+// Type Aliases - this is a way to create a new type
+type ID = string
+type PopularTag = string
+type MaybePopularTag = PopularTag | null
+let popularTags: PopularTag[] = ['dragon', 'coffee']
+let dragonsTag: MaybePopularTag = 'dragon'
+
 // Type Assertion - this is a way to tell the compiler that you know better than it does what the type of a variable is
 let cid: any = 1
 // let customerId = <number>cid // this is the old way
@@ -254,8 +267,28 @@ const user1: UserInterface = {
   id: 1,
   name: 'Justin',
 }
-
 // user1.id = 5 // this will not work because id is read only
+
+// Interfaces with classes - this is a way to define a type for a class that can be reused in multiple places
+interface TakePhoto {
+  cameraMode: string
+  filter: string
+  burst: number
+}
+// this is a class that implements the TakePhoto interface
+class Instagram implements TakePhoto {
+  cameraMode = 'auto'
+  filter = 'normal'
+  burst = 3
+}
+// this is a class that implements the TakePhoto interface using a constructor
+class YouTube implements TakePhoto {
+  constructor(
+    public cameraMode: string,
+    public filter: string,
+    public burst: number,
+  ) {}
+}
 
 // Interfaces with functions - this is a way to define a type for a function that can be reused in multiple places
 interface MathFunc {
@@ -264,6 +297,13 @@ interface MathFunc {
 
 const add: MathFunc = (x: number, y: number): number => x + y
 const subtract: MathFunc = (x: number, y: number): number => x - y
+
+// Abstract Classes - this is a way to define a type for a class that can be reused in multiple places
+abstract class TakePhoto {
+  constructor(public cameraMode: string, public filter: string) {}
+}
+// this is a class that extends the TakePhoto abstract class
+class TikTok extends TakePhoto {}
 
 // Union - this is a variable that can be multiple types but you can only assign one type
 let pid: string | number = 2
@@ -326,13 +366,13 @@ class Employee extends Person {
 
 const emp = new Employee(3, 'Jupiter', 25, 'CEO') // this is an instance of the class
 
-// console.log(justin) // this will work because id and name are public
-// console.log(john) // this will work because id and name are public
-// console.log(justin.id) // this will work because id is public
-// console.log(justin.name) // this will work because name is public
+console.log(justin) // this will work because id and name are public
+console.log(john) // this will work because id and name are public
+console.log(justin.id) // this will work because id is public
+console.log(justin.name) // this will work because name is public
 // console.log(justin.age) // this will not work because age is private
 console.log(justin.register()) // this will work because register is public
-// console.log(employee)
+console.log(employee)
 console.log(emp.name) // this will work because name is public
 
 // Generics - this is a way to make a function reusable for multiple types of data (this is a function that takes a string and returns a string)
